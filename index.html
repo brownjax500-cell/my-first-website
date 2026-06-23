@@ -1,70 +1,1880 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Andrew's Website</title>
+  <meta charset="UTF-8" />
+  <title>NovaRise Studio – Build Your Next Big Thing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.15);
+      --accent-strong: #6366f1;
+      --accent-2: #ec4899;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2937;
+      --card-bg: #0f172a;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.28s ease-out;
+      --glass: rgba(15, 23, 42, 0.85);
+      --glass-border: rgba(148, 163, 184, 0.25);
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            padding: 50px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        h1 {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 40%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        p {
-            font-size: 20px;
-            opacity: 0.9;
-        }
+    .noise-layer {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      opacity: 0.08;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='no'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
 
-        .box {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            display: inline-block;
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
 
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
 
-        button:hover {
-            background: black;
-            color: white;
-        }
-    </style>
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0%, #4f46e5 0, #0ea5e9 40%, #020617 100%);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4),
+        0 18px 40px rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(
+        from 180deg,
+        rgba(236, 72, 153, 0.4),
+        rgba(56, 189, 248, 0.4),
+        rgba(129, 140, 248, 0.4),
+        rgba(236, 72, 153, 0.4)
+      );
+      mix-blend-mode: screen;
+      opacity: 0.7;
+    }
+
+    .brand-logo span {
+      position: relative;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color var(--transition-fast), border-color var(--transition-fast),
+        background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.35), #020617 55%);
+      color: #e5e7eb;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        background var(--transition-med);
+    }
+
+    .nav-cta span.icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(236, 72, 153, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px) translateX(1px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.55), #020617 55%);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    .hero-left {
+      position: relative;
+      padding: 22px 22px 24px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(15, 23, 42, 0.9)
+        ),
+        radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.35), transparent 55%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.35), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(236, 72, 153, 0.25), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      filter: blur(4px);
+    }
+
+    .hero-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #22c55e, #16a34a);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-pill span.highlight {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      position: relative;
+      font-size: clamp(28px, 4vw, 36px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span.gradient {
+      background: linear-gradient(120deg, #4f46e5, #22c55e, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      position: relative;
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin-bottom: 18px;
+    }
+
+    .hero-metrics {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      flex: 0 0 auto;
+      min-width: 120px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric-value {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .metric-value span.trend {
+      font-size: 11px;
+      color: var(--success);
+      background: rgba(22, 163, 74, 0.15);
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .metric-value span.trend.down {
+      color: var(--danger);
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    .hero-actions {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.55), #020617 55%);
+      color: #e5e7eb;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+      cursor: pointer;
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        background var(--transition-med), border-color var(--transition-med);
+    }
+
+    .btn-primary span.icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(236, 72, 153, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) translateX(1px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.98);
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.75), #020617 55%);
+      border-color: rgba(129, 140, 248, 1);
+    }
+
+    .btn-secondary {
+      padding: 9px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), border-color var(--transition-fast),
+        background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-secondary span.icon {
+      font-size: 14px;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+    }
+
+    .hero-footnote {
+      position: relative;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-footnote span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      position: relative;
+      padding: 18px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.35), #020617 55%);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-right-inner {
+      position: relative;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .dashboard-title {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .dashboard-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip.active {
+      border-color: rgba(129, 140, 248, 0.9);
+      background: rgba(79, 70, 229, 0.25);
+      color: #e5e7eb;
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .dashboard-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .dashboard-main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .chart-card {
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 10px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .chart-header strong {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .legend-swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4f46e5;
+    }
+
+    .legend-swatch.alt {
+      background: #ec4899;
+    }
+
+    .chart-body {
+      position: relative;
+      height: 120px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.25), #020617 55%);
+      overflow: hidden;
+    }
+
+    .chart-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          to right,
+          rgba(31, 41, 55, 0.6) 1px,
+          transparent 1px
+        ),
+        linear-gradient(to bottom, rgba(31, 41, 55, 0.6) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.6;
+    }
+
+    .chart-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .chart-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .chart-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .chart-footer strong {
+      color: #e5e7eb;
+    }
+
+    .chart-footer span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .side-card {
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 10px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .side-header strong {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .side-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 7px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .side-item-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .side-item-title {
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .side-item-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .side-item-value {
+      font-size: 11px;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .side-item-value span.trend {
+      font-size: 10px;
+      color: var(--success);
+    }
+
+    .side-item-value span.trend.down {
+      color: var(--danger);
+    }
+
+    .side-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .side-footer span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 880px) {
+      .section-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .feature-card {
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform var(--transition-med), box-shadow var(--transition-med),
+        border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.25), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      mix-blend-mode: screen;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+      border-color: rgba(129, 140, 248, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .feature-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .feature-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .feature-meta span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .feature-meta span.tag {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .section-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 880px) {
+      .section-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .plan-card {
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(79, 70, 229, 0.25), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(236, 72, 153, 0.25), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      filter: blur(4px);
+    }
+
+    .plan-card-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .plan-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .plan-title {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .plan-badge {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      background: rgba(79, 70, 229, 0.25);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .plan-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .plan-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .plan-step {
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 10px 10px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .plan-step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .plan-step-title {
+      font-size: 12px;
+      color: #e5e7eb;
+    }
+
+    .plan-step-index {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .plan-step-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .plan-step-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .plan-step-meta span.tag {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .plan-step-meta span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .cta-card {
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(236, 72, 153, 0.35), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      filter: blur(4px);
+    }
+
+    .cta-card-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cta-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cta-title {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 320px;
+    }
+
+    .cta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .cta-row {
+        flex-direction: column;
+      }
+    }
+
+    .input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #e5e7eb;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .input::placeholder {
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .input:focus {
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .cta-footnote {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-footnote span.badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 11px;
+      padding: 2px 0;
+      border-bottom: 1px dashed transparent;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .footer-link:hover {
+      color: #e5e7eb;
+      border-color: rgba(148, 163, 184, 0.7);
+    }
+
+    .footer-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e5e7eb;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      max-width: 260px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity var(--transition-med), transform var(--transition-med);
+      z-index: 10;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .toast-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--success);
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-size: 11px;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .toast-close {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .pulse-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      }
+      70% {
+        transform: scale(1.8);
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-
 <body>
-
-    <h1>🚀 Andrew's Website</h1>
-    <p>Learning to build cool stuff on the internet</p>
-
-    <div class="box">
-        <h2>My Goals 💸</h2>
-        <ul style="text-align:left;">
-            <li>Make money online</li>
-            <li>Learn coding</li>
-            <li>Build real websites</li>
-        </ul>
-
-        <button onclick="alert('Keep going bro 🚀')">
-            Click Me
+  <div class="noise-layer"></div>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">
+          <span>NR</span>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">NovaRise Studio</div>
+          <div class="brand-tagline">Launch, validate, and grow your next business idea—beautifully.</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#plan" class="nav-link">Launch plan</a>
+        <a href="#cta" class="nav-link">Get started</a>
+        <button class="nav-cta" id="demoButton">
+          <span class="icon">▶</span>
+          <span>Run quick demo</span>
         </button>
-    </div>
+      </nav>
+    </header>
 
+    <main>
+      <section class="hero">
+        <div class="hero-left fade-in" id="heroLeft">
+          <div class="hero-pill">
+            <div class="hero-pill-dot"></div>
+            <span>Live business canvas · <span class="highlight">From idea to first customer</span></span>
+          </div>
+          <h1 class="hero-title">
+            Build a <span class="gradient">10/10 business</span> with a dashboard that thinks like a founder.
+          </h1>
+          <p class="hero-subtitle">
+            Capture your idea, shape your offer, track your first users, and watch your business come alive—
+            all in one beautiful, GitHub‑ready project.
+          </p>
+
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="metric-label">Idea clarity score</div>
+              <div class="metric-value">
+                <span id="clarityScore">72%</span>
+                <span class="trend">+18%</span>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Launch readiness</div>
+              <div class="metric-value">
+                <span id="readinessScore">54%</span>
+                <span class="trend">+9%</span>
+              </div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Risk exposure</div>
+              <div class="metric-value">
+                <span id="riskScore">31%</span>
+                <span class="trend down">-7%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" id="startButton">
+              <span class="icon">⚡</span>
+              <span>Start my business canvas</span>
+            </button>
+            <button class="btn-secondary" id="githubButton">
+              <span class="icon">★</span>
+              <span>Use this as my GitHub landing page</span>
+            </button>
+          </div>
+
+          <div class="hero-footnote">
+            <span class="badge">No code backend</span>
+            <span>Just HTML, CSS & JS—perfect for GitHub Pages or your next framework.</span>
+          </div>
+        </div>
+
+        <div class="hero-right fade-in" id="heroRight">
+          <div class="hero-right-inner">
+            <div class="dashboard-header">
+              <div class="dashboard-title">Idea validation dashboard</div>
+              <div class="dashboard-filters">
+                <div class="chip active">
+                  <span class="chip-dot"></span>
+                  <span>Pre‑launch</span>
+                </div>
+                <div class="chip">
+                  <span>Post‑launch</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-main">
+              <div class="chart-card">
+                <div class="chart-header">
+                  <strong>Momentum over time</strong>
+                  <div class="chart-legend">
+                    <div class="legend-item">
+                      <span class="legend-swatch"></span>
+                      <span>Interest</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-swatch alt"></span>
+                      <span>Commitment</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="chart-body">
+                  <div class="chart-grid"></div>
+                  <div class="chart-line" id="chartLine">
+                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                      <polyline
+                        id="interestLine"
+                        fill="none"
+                        stroke="#4f46e5"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        points="0,30 15,26 30,22 45,18 60,16 75,14 90,12 100,10"
+                      />
+                      <polyline
+                        id="commitmentLine"
+                        fill="none"
+                        stroke="#ec4899"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        points="0,34 15,32 30,29 45,26 60,23 75,20 90,18 100,16"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="chart-footer">
+                  <div>
+                    <strong>Launch window:</strong> Next 21 days
+                  </div>
+                  <div>
+                    <span class="badge">Auto‑updated from your inputs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="side-card">
+                <div class="side-header">
+                  <strong>Business snapshot</strong>
+                  <span>Today</span>
+                </div>
+                <div class="side-list">
+                  <div class="side-item">
+                    <div class="side-item-main">
+                      <div class="side-item-title">Positioning strength</div>
+                      <div class="side-item-sub">How clearly your offer stands out.</div>
+                    </div>
+                    <div class="side-item-value">
+                      <span id="positioningScore">68 / 100</span>
+                      <span class="trend">Improving</span>
+                    </div>
+                  </div>
+                  <div class="side-item">
+                    <div class="side-item-main">
+                      <div class="side-item-title">Audience fit</div>
+                      <div class="side-item-sub">Match between idea and target users.</div>
+                    </div>
+                    <div class="side-item-value">
+                      <span id="audienceScore">74 / 100</span>
+                      <span class="trend">Strong</span>
+                    </div>
+                  </div>
+                  <div class="side-item">
+                    <div class="side-item-main">
+                      <div class="side-item-title">Monetization clarity</div>
+                      <div class="side-item-sub">How you’ll actually get paid.</div>
+                    </div>
+                    <div class="side-item-value">
+                      <span id="monetizationScore">59 / 100</span>
+                      <span class="trend down">Needs work</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="side-footer">
+                  <span>Use this panel as your daily check‑in.</span>
+                  <span class="badge">Founder‑friendly metrics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Everything you need to turn an idea into a business.</h2>
+            <p class="section-subtitle">
+              This layout is more than pretty UI—it’s a structured way to think about your business.
+              Customize the text, wire it to a backend later, or keep it as a static GitHub Pages site.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-title">Idea clarity canvas</div>
+            <div class="feature-desc">
+              Capture your problem, solution, audience, and unfair advantage in one place. No more scattered notes.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Core</span>
+              <span class="tag">Editable sections</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">Audience targeting lane</div>
+            <div class="feature-desc">
+              Define your ideal customer, their pains, and what “success” looks like for them—directly in the UI.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Growth</span>
+              <span class="tag">Personas</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <div class="feature-title">Monetization planner</div>
+            <div class="feature-desc">
+              Map out pricing, revenue streams, and upsells. Use this as a blueprint for your future checkout flow.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Revenue</span>
+              <span class="tag">Pricing ideas</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <div class="feature-title">Launch metrics tracker</div>
+            <div class="feature-desc">
+              Track interest, signups, and early conversions. Replace the dummy data with your real numbers later.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Analytics</span>
+              <span class="tag">Simple chart</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <div class="feature-title">Modular sections</div>
+            <div class="feature-desc">
+              Every card is a building block. Duplicate, rename, or repurpose them as your business evolves.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Flexible</span>
+              <span class="tag">Component‑like</span>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚙️</div>
+            <div class="feature-title">GitHub‑ready structure</div>
+            <div class="feature-desc">
+              Single HTML file, clean CSS, and light JS. Perfect starting point for a repo or GitHub Pages site.
+            </div>
+            <div class="feature-meta">
+              <span class="badge">Dev‑friendly</span>
+              <span class="tag">No dependencies</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="plan">
+        <div class="section-columns">
+          <div class="plan-card">
+            <div class="plan-card-inner">
+              <div class="plan-header">
+                <h2 class="plan-title">Your 4‑step launch plan, baked into the UI.</h2>
+                <span class="plan-badge">Founder mode</span>
+              </div>
+              <p class="plan-subtitle">
+                Use each step as a mini‑milestone. When you complete a step, update the metrics above.
+                This turns the page into a living reflection of your progress.
+              </p>
+
+              <div class="plan-grid">
+                <div class="plan-step">
+                  <div class="plan-step-header">
+                    <div class="plan-step-title">1 · Define your problem</div>
+                    <div class="plan-step-index">1</div>
+                  </div>
+                  <div class="plan-step-desc">
+                    Write a single, sharp sentence describing the problem you’re solving. Add it to the hero subtitle.
+                  </div>
+                  <div class="plan-step-meta">
+                    <span class="tag">Clarity</span>
+                    <span class="badge">High impact</span>
+                  </div>
+                </div>
+
+                <div class="plan-step">
+                  <div class="plan-step-header">
+                    <div class="plan-step-title">2 · Shape your offer</div>
+                    <div class="plan-step-index">2</div>
+                  </div>
+                  <div class="plan-step-desc">
+                    Use the feature cards to describe what your product actually does. Make each card a promise.
+                  </div>
+                  <div class="plan-step-meta">
+                    <span class="tag">Positioning</span>
+                    <span class="badge">Visible here</span>
+                  </div>
+                </div>
+
+                <div class="plan-step">
+                  <div class="plan-step-header">
+                    <div class="plan-step-title">3 · Map your audience</div>
+                    <div class="plan-step-index">3</div>
+                  </div>
+                  <div class="plan-step-desc">
+                    Turn one section into “Who this is for” and list your top 3 audience segments.
+                  </div>
+                  <div class="plan-step-meta">
+                    <span class="tag">Targeting</span>
+                    <span class="badge">Guides marketing</span>
+                  </div>
+                </div>
+
+                <div class="plan-step">
+                  <div class="plan-step-header">
+                    <div class="plan-step-title">4 · Define success metrics</div>
+                    <div class="plan-step-index">4</div>
+                  </div>
+                  <div class="plan-step-desc">
+                    Replace the dummy metrics with your own KPIs: signups, revenue, retention, or anything that matters.
+                  </div>
+                  <div class="plan-step-meta">
+                    <span class="tag">Measurement</span>
+                    <span class="badge">Future‑proof</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-card" id="cta">
+            <div class="cta-card-inner">
+              <div class="cta-header">
+                <div>
+                  <h2 class="cta-title">Ready to turn this into your business?</h2>
+                  <p class="cta-subtitle">
+                    Drop your idea name and a one‑line pitch. The page will react and give you a quick “clarity boost”.
+                  </p>
+                </div>
+              </div>
+
+              <form class="cta-form" id="ideaForm">
+                <div class="cta-row">
+                  <input
+                    type="text"
+                    class="input"
+                    id="ideaName"
+                    placeholder="My business name (e.g. NovaRise Studio)"
+                    required
+                  />
+                </div>
+                <div class="cta-row">
+                  <input
+                    type="text"
+                    class="input"
+                    id="ideaPitch"
+                    placeholder="One‑line pitch (e.g. A studio that turns ideas into launch‑ready products.)"
+                    required
+                  />
+                  <button type="submit" class="btn-primary">
+                    <span class="icon">✨</span>
+                    <span>Apply to canvas</span>
+                  </button>
+                </div>
+              </form>
+
+              <div class="cta-footnote">
+                <span class="badge">Instant feedback</span>
+                <span>We’ll nudge your clarity, readiness, and risk metrics based on your inputs.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> NovaRise Studio · Built as a 10/10 business starter layout.</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Clone to GitHub</a>
+        <a href="#" class="footer-link">Turn into React</a>
+        <a href="#" class="footer-link">Connect a backend</a>
+        <span class="footer-badge">You’re one commit away from a real business.</span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">
+    <div class="toast-icon">✔</div>
+    <div class="toast-content">
+      <div class="toast-title">Canvas updated</div>
+      <div id="toastMessage">
+        Your idea has been applied to the dashboard. Use this as your launch home base.
+      </div>
+    </div>
+    <button class="toast-close" id="toastClose">×</button>
+  </div>
+
+  <div class="pulse-dot" id="pulseDot" style="top: 120px; left: 40px;"></div>
+
+  <script>
+    const yearEl = document.getElementById("year");
+    yearEl.textContent = new Date().getFullYear();
+
+    const heroLeft = document.getElementById("heroLeft");
+    const heroRight = document.getElementById("heroRight");
+
+    setTimeout(() => {
+      heroLeft.classList.add("visible");
+      setTimeout(() => {
+        heroRight.classList.add("visible");
+      }, 180);
+    }, 120);
+
+    const clarityScoreEl = document.getElementById("clarityScore");
+    const readinessScoreEl = document.getElementById("readinessScore");
+    const riskScoreEl = document.getElementById("riskScore");
+    const positioningScoreEl = document.getElementById("positioningScore");
+    const audienceScoreEl = document.getElementById("audienceScore");
+    const monetizationScoreEl = document.getElementById("monetizationScore");
+
+    const interestLine = document.getElementById("interestLine");
+    const commitmentLine = document.getElementById("commitmentLine");
+
+    const startButton = document.getElementById("startButton");
+    const githubButton = document.getElementById("githubButton");
+    const demoButton = document.getElementById("demoButton");
+
+    const ideaForm = document.getElementById("ideaForm");
+    const ideaNameInput = document.getElementById("ideaName");
+    const ideaPitchInput = document.getElementById("ideaPitch");
+
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    const toastClose = document.getElementById("toastClose");
+
+    const pulseDot = document.getElementById("pulseDot");
+
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.classList.add("visible");
+      setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 4200);
+    }
+
+    toastClose.addEventListener("click", () => {
+      toast.classList.remove("visible");
+    });
+
+    function animateMetric(el, baseValue, delta) {
+      const start = baseValue;
+      const end = baseValue + delta;
+      const duration = 600;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.round(start + (end - start) * progress);
+        el.textContent = value + "%";
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function animateScore(el, baseValue, delta) {
+      const start = baseValue;
+      const end = baseValue + delta;
+      const duration = 600;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.round(start + (end - start) * progress);
+        el.textContent = value + " / 100";
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function wiggleChart() {
+      const interestPoints = [
+        "0,30",
+        "15,26",
+        "30,22",
+        "45,18",
+        "60,16",
+        "75,14",
+        "90,12",
+        "100,10",
+      ];
+      const commitmentPoints = [
+        "0,34",
+        "15,32",
+        "30,29",
+        "45,26",
+        "60,23",
+        "75,20",
+        "90,18",
+        "100,16",
+      ];
+
+      function jitter(points, amount) {
+        return points
+          .map((p) => {
+            const [x, y] = p.split(",").map(Number);
+            const jitterY = y + (Math.random() - 0.5) * amount;
+            return `${x},${Math.max(8, Math.min(36, jitterY))}`;
+          })
+          .join(" ");
+      }
+
+      const duration = 500;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const amount = (1 - progress) * 4;
+        interestLine.setAttribute("points", jitter(interestPoints, amount));
+        commitmentLine.setAttribute("points", jitter(commitmentPoints, amount));
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          interestLine.setAttribute("points", interestPoints.join(" "));
+          commitmentLine.setAttribute("points", commitmentPoints.join(" "));
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function movePulseDot() {
+      const rect = heroRight.getBoundingClientRect();
+      const x = rect.left + rect.width * (0.2 + Math.random() * 0.6);
+      const y = rect.top + rect.height * (0.2 + Math.random() * 0.6);
+      pulseDot.style.left = x + "px";
+      pulseDot.style.top = y + "px";
+    }
+
+    startButton.addEventListener("click", () => {
+      animateMetric(clarityScoreEl, 72, 10);
+      animateMetric(readinessScoreEl, 54, 12);
+      animateMetric(riskScoreEl, 31, -6);
+
+      animateScore(positioningScoreEl, 68, 6);
+      animateScore(audienceScoreEl, 74, 4);
+      animateScore(monetizationScoreEl, 59, 5);
+
+      wiggleChart();
+      movePulseDot();
+      showToast("Founder mode activated. Use this layout as your daily business cockpit.");
+    });
+
+    githubButton.addEventListener("click", () => {
+      showToast(
+        "Perfect for GitHub Pages: commit this file, enable Pages, and share your business with the world."
+      );
+    });
+
+    demoButton.addEventListener("click", () => {
+      ideaNameInput.value = "NovaRise Studio";
+      ideaPitchInput.value =
+        "A studio that turns raw ideas into launch‑ready digital products with founder‑friendly dashboards.";
+      ideaForm.dispatchEvent(new Event("submit", { cancelable: true }));
+    });
+
+    ideaForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = ideaNameInput.value.trim();
+      const pitch = ideaPitchInput.value.trim();
+
+      if (!name || !pitch) {
+        showToast("Add both a name and a one‑line pitch to update your canvas.");
+        return;
+      }
+
+      const heroTitle = document.querySelector(".hero-title");
+      const heroSubtitle = document.querySelector(".hero-subtitle");
+
+      heroTitle.innerHTML =
+        `Build <span class="gradient">${name}</span> into a 10/10 business, starting right here.`;
+      heroSubtitle.textContent = pitch;
+
+      const clarityBoost = Math.min(18, pitch.length / 4);
+      const readinessBoost = Math.min(14, name.length / 3);
+      const riskDrop = Math.min(10, (pitch.length + name.length) / 12);
+
+      animateMetric(clarityScoreEl, 72, clarityBoost);
+      animateMetric(readinessScoreEl, 54, readinessBoost);
+      animateMetric(riskScoreEl, 31, -riskDrop);
+
+      animateScore(positioningScoreEl, 68, Math.round(clarityBoost / 2));
+      animateScore(audienceScoreEl, 74, Math.round(readinessBoost / 2));
+      animateScore(monetizationScoreEl, 59, Math.round((clarityBoost + readinessBoost) / 6));
+
+      wiggleChart();
+      movePulseDot();
+
+      showToast(`Canvas updated for "${name}". This page is now your business home base.`);
+    });
+
+    window.addEventListener("resize", () => {
+      movePulseDot();
+    });
+
+    setTimeout(movePulseDot, 800);
+  </script>
 </body>
 </html>
