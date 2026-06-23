@@ -2,14 +2,69 @@
 <html>
 <head>
     <title>Andrew's Website</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: black;
+            color: white;
+        }
+    </style>
+
 </head>
+
 <body>
 
-    <h1>Yo, welcome to my website! 🚀</h1>
+    <h1>🚀 Andrew's Website</h1>
+    <p>Learning to build cool stuff on the internet</p>
 
-    <p>I'm Andrew and I'm learning how to code.</p>
+    <div class="box">
+        <h2>My Goals 💸</h2>
+        <ul style="text-align:left;">
+            <li>Make money online</li>
+            <li>Learn coding</li>
+            <li>Build real websites</li>
+        </ul>
 
-    <button>Click Me</button>
+        <button onclick="alert('Keep going bro 🚀')">
+            Click Me
+        </button>
+    </div>
 
 </body>
 </html>
